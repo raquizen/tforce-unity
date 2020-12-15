@@ -6,7 +6,8 @@ public class PlatformGeneration : MonoBehaviour
 {
     public GameObject Platform; //plataforma
     public Transform point; // ponto onde acaba a camera
-    public float Distance;// distancia entre as plataformas
+    public float minDistance;// distancia entre as plataformas
+    public float maxDistance;// distancia entre as plataformas
     private  float platformWidth; // tamanho da plataforma
     void Start()
     {
@@ -27,10 +28,10 @@ public class PlatformGeneration : MonoBehaviour
         //logica para gerar plataformas //  se o objeto estiver fora da camera
         if(transform.position.x < point.position.x){
 
-            Distance = Random.Range(3f, 8f);
+           float Distance = Random.Range(minDistance, maxDistance);
 
             //gera nova plataforma
-            transform.position = new Vector3(transform.position.x + platformWidth + Distance, transform.position.y, transform.position.z);
+            transform.position = new Vector3(transform.position.x + platformWidth + Distance, transform.position.y, 0);
 
             // instanciando nova plataforma na cena
             Instantiate(Platform, transform.position, transform.rotation);
