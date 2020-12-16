@@ -9,6 +9,12 @@ public class Player : MonoBehaviour
 
    private bool isJumping;
    public float JumpForce;
+
+    public GameObject bullet;
+    public Transform firePoint;
+
+    public GameObject smoke;
+
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
@@ -22,6 +28,11 @@ public class Player : MonoBehaviour
         if(Input.GetKey(KeyCode.Space) && !isJumping){
             rig.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
             isJumping = true;
+            smoke.SetActive(true);// ativar fumaça do jetpack
+        }
+
+        if(Input.GetKey(KeyCode.L)){
+            Instantiate(bullet, firePoint.transform.position, firePoint.transform.rotation);
         }
     }
 
@@ -29,6 +40,7 @@ public class Player : MonoBehaviour
      void OnCollisionEnter2D(Collision2D collision) {
         if(collision.gameObject.tag == "ground"){
             isJumping = false;
+            smoke.SetActive(false); // Desativar fumaca do jetpack
         }
     }
 }
