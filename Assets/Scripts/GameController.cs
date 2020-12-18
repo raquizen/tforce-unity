@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine. SceneManagement;
 public class GameController : MonoBehaviour
 {
     //Scrip universal para controle do score do game
@@ -14,6 +14,8 @@ public class GameController : MonoBehaviour
     public float ScorePerSecond;
     public bool PlayerIsAlive;
     public static GameController current;
+    public GameObject GameOverPanel;
+    public Button Restart;
 
     void Start()
     {
@@ -37,5 +39,9 @@ public class GameController : MonoBehaviour
     public void AddScore(int value){
         CoinScore += value;
         coinText.text = CoinScore.ToString("0000");
+    }
+
+    public void RestartGame(){
+        SceneManager.LoadScene(0);
     }
 }

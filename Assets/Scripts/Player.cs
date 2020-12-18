@@ -48,6 +48,22 @@ public class Player : MonoBehaviour
             GameController.current.AddScore(5);
             Destroy(collision.gameObject);
         }
+
+        if(collision.gameObject.tag== "enemy"){
+           GameController.current.GameOverPanel.SetActive(true);//painel gameover
+           GameController.current.PlayerIsAlive = false;//moreu
+           Destroy(gameObject);
+        }
     }
 
+    public void JumpBtn(){
+         if(!isJumping){
+            rig.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
+            isJumping = true;
+            smoke.SetActive(true);// ativar fumaça do jetpack
+        }
+    }
+    public void FireBtnc(){
+           Instantiate(bullet, firePoint.transform.position, firePoint.transform.rotation);
+    }
 }
