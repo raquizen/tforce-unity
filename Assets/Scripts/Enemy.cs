@@ -18,17 +18,19 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        //Mesma logica da bala so que para a esquerda
-        // transform.Translate(Vector3.left * Speed * Time.deltaTime);
+     if(GameController.current.PlayerIsAlive){
         rig.velocity = new Vector2(-Speed, rig.velocity.y);
          if(transform.position.x < backPoint.position.x){
              Destroy(gameObject);
+         }
          }
     }
     // metodo para verificar a colisao da bala no inimigo
      void OnTriggerEnter2D(Collider2D collision) {
         // Se o inimigo bateu na bala
         if(collision.gameObject.tag == "Bulet"){
+            GetComponent<CircleCollider2D>().enabled =false;
+            GameController.current.AddScore(10);// ao matar inimigo ganha 10 moedas
             animator.SetTrigger("destroy");
             Destroy(gameObject, 1f);
         }

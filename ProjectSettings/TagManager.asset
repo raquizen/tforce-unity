@@ -7,6 +7,7 @@ TagManager:
   - ground
   - Bulet
   - enemy
+  - Coin
   layers:
   - Default
   - TransparentFX

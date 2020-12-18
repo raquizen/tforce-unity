@@ -25,6 +25,7 @@ public class PlatformGeneration : MonoBehaviour
     
     void Update()
     {
+        if(GameController.current.PlayerIsAlive){
         //logica para gerar plataformas //  se o objeto estiver fora da camera
         if(transform.position.x < point.position.x){
 
@@ -36,5 +37,5 @@ public class PlatformGeneration : MonoBehaviour
             // instanciando nova plataforma na cena
             Instantiate(Platform, transform.position, transform.rotation);
         }
-    }
+    }}
 }
